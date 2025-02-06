@@ -8,6 +8,7 @@ def add_item():
     title = input("Enter the title of the music: ")
     artist = input("Enter the artist of the music: ")
     
+    music_library.append((title, artist))
     # library as list
     print("Item added.\n")
 
