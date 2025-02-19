@@ -4,7 +4,7 @@
 import csv
 
 class Movie:
-    # function for titles, genre, directos, length, and actors
+    # function for titles, genre, directors, length, and actors
     def __init__(self, title, genre, director, length, actors):
         self.title = title
         self.genre = genre
@@ -29,7 +29,7 @@ def load_movies(filename):
             movies.append(Movie(title, genre, director, length, actors))
     return movies
 
-# function to filter the movies based on genre and the other things
+# Function to filter the movies based on genre and the other things
 def filter_movies(movies, filters):
     filtered_movies = movies
 
@@ -46,14 +46,14 @@ def filter_movies(movies, filters):
 
     return filtered_movies
 
-#main function to run the whole code
+# Main function to run the whole code
 def main():
     print("Welcome to the Movie Recommendation Program!\n")
     
-    movies = open('Movie Recommender\Movies list.csv') 
+    movies = load_movies('Movie Recommender/Movies list.csv')
 
     while True:
-        print("Please choose at least 2 filters from the following options:")
+        print("\nPlease choose at least 2 filters from the following options:")
         print("1. Genre")
         print("2. Director")
         print("3. Length (in minutes)")
@@ -61,35 +61,45 @@ def main():
         print("5. Print all movies")
         print("6. Exit")
 
-        choice = input("\nEnter your choice (or '6' to exit): ")
+        selected_filters = {}
+
+        while len(selected_filters) < 2:
+            choice = input("\nEnter your choice (or '6' to exit): ")
+
+            if choice == '6':
+                print("Exiting program.")
+                break
+
+            if choice == '1':
+                genre = input("Enter genre: ")
+                selected_filters['genre'] = genre
+            elif choice == '2':
+                director = input("Enter director: ")
+                selected_filters['director'] = director
+            elif choice == '3':
+                min_length = int(input("Enter minimum length: "))
+                max_length = int(input("Enter maximum length: "))
+                selected_filters['length'] = (min_length, max_length)
+            elif choice == '4':
+                actor = input("Enter actor name: ")
+                selected_filters['actor'] = actor
+            elif choice == '5':
+                print("\nAll Movies:")
+                if len(movies) == 0:
+                    print("No movies available.")
+                else:
+                    for movie in movies:
+                        print(movie)
+                continue 
+            else:
+                print("Invalid choice. Please try again.")
+
+            if len(selected_filters) < 2:
+                print("You must select at least 2 filters to proceed.")
 
         if choice == '6':
             break
 
-        selected_filters = {}
-
-        if choice == '1':
-            genre = input("Enter genre: ")
-            selected_filters['genre'] = genre
-        elif choice == '2':
-            director = input("Enter director: ")
-            selected_filters['director'] = director
-        elif choice == '3':
-            min_length = int(input("Enter minimum length: "))
-            max_length = int(input("Enter maximum length: "))
-            selected_filters['length'] = (min_length, max_length)
-        elif choice == '4':
-            actor = input("Enter actor name: ")
-            selected_filters['actor'] = actor
-        elif choice == '5':
-            for movie in movies:
-                print(movie)
-            continue
-
-        if len(selected_filters) < 2:
-            print("You must select at least 2 filters to proceed.")
-            continue
-        
         recommended_movies = filter_movies(movies, selected_filters)
 
         if recommended_movies:
