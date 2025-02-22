@@ -2,53 +2,75 @@
 
 
 import csv
+import os
 import pandas as pd
 
-# function to load the movies
+# Function to load the movies
 def load_movies(csv_file):
-    """Load the movie list from a CSV file."""
-    return pd.read_csv(csv_file)
+    """Load the movie list from a CSV file with error handling."""
+    if not os.path.exists(csv_file):
+        print(f"Error: CSV file '{csv_file}' not found.")
+        exit()
 
-# function to filter the movies
+    try:
+        return pd.read_csv(csv_file, encoding="utf-8")
+    except UnicodeDecodeError:
+        print("Encoding error! Trying with a different encoding...")
+        return pd.read_csv(csv_file, encoding="ISO-8859-1")
+    except Exception as e:
+        print(f"Error reading CSV file: {e}")
+        exit()
+
+# Function to filter the movies
 def filter_movies(movies, filters):
     """Filter movies based on multiple criteria."""
     filtered = movies.copy()
+
     for key, value in filters.items():
         if key == 'Length':
             try:
                 user_length = int(value.split()[0])
-                lower_bound = user_length - 10
-                upper_bound = user_length + 10
+                lower_bound, upper_bound = user_length - 10, user_length + 10
+                
                 if 'Length' in filtered.columns:
-                    filtered = filtered[filtered['Length'].apply]
+                    filtered['Length'] = filtered['Length'].astype(str)
+                    filtered['Length'] = filtered['Length'].str.extract('(\d+)')[0].astype(float)
+                    filtered = filtered[filtered['Length'].between(lower_bound, upper_bound)]
                 else:
-                    print("Length column is missing or invalid in the dataset.")
+                    print("Error: 'Length' column missing in dataset.")
                     return pd.DataFrame()
             except ValueError:
                 print("Invalid length format. Please use 'XX min' (e.g., '120 min').")
                 return pd.DataFrame()
         else:
-            filtered = filtered[filtered[key].str.contains(value, case=False, na=False)]
+            if key in filtered.columns:
+                filtered[key] = filtered[key].astype(str)
+                filtered = filtered[filtered[key].str.contains(value, case=False, na=False)]
+            else:
+                print(f"Warning: Column '{key}' not found in dataset. Skipping this filter.")
+    
     return filtered
 
-# The mian function to run all the code
+# Main function
 def main():
-    csv_file = "Movie Recommender\Movies list.csv"
-    movies = load_movies(csv_file)
-    
+    csv_file = "Movie Recommender/Movies list.csv"
+
     print("Welcome to the Movie Recommender!")
-    
+
+    # Load movie data
+    movies = load_movies(csv_file)
+
     while True:
         print("\nOptions:")
         print("1. Get movie recommendations")
         print("2. Print entire movie list")
         print("3. Exit")
         choice = input("Enter your choice: ")
-        
+
         if choice == "1":
             print("\nFilter by at least two criteria:")
             filters = {}
-            
+
             if input("Filter by genre? (yes/no): ").lower() == "yes":
                 filters['Genre'] = input("Enter genre: ")
             if input("Filter by director? (yes/no): ").lower() == "yes":
@@ -57,28 +79,33 @@ def main():
                 filters['Length'] = input("Enter length (e.g., '120 min'): ")
             if input("Filter by actor? (yes/no): ").lower() == "yes":
                 filters['Actors'] = input("Enter actor: ")
-            
+
             if len(filters) < 2:
                 print("Please select at least two filters.")
                 continue
-            
+
             results = filter_movies(movies, filters)
-            
+
             if results.empty:
                 print("No movies found with the selected criteria.")
             else:
+                # Ensure only existing columns are selected
+                columns_to_display = ['Title', 'Genre', 'Director', 'Length', 'Notable Actors']
+                available_columns = [col for col in columns_to_display if col in results.columns]
+
                 print("\nRecommended Movies:")
-                print(results[['Title', 'Genre', 'Director', 'Length', 'Actors']].to_string(index=False))
-        
+                print(results[available_columns].to_string(index=False))
+
         elif choice == "2":
-            print("\nFull Movie List (First 10 Movies):")
-            print(movies.head(10).to_string(index=False))  # Only prints first 10 rows of the movie list
-            
+            print("\nFull Movie List:")
+            print(movies.to_string(index=False))
+
         elif choice == "3":
             print("Exiting program. Goodbye!")
             break
         else:
             print("Invalid choice. Please enter a valid option.")
 
+# Run program
 if __name__ == "__main__":
     main()
