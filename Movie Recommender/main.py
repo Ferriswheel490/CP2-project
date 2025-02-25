@@ -27,20 +27,20 @@ def filter_movies(movies, filters):
     filtered = movies.copy()
 
     for key, value in filters.items():
-        if key == 'Length':
+        if key == 'Length (min)':
             try:
                 user_length = int(value.split()[0])
                 lower_bound, upper_bound = user_length - 10, user_length + 10
 
-                if 'Length' in filtered.columns:
+                if 'Length (min)' in filtered.columns:
                     
-                    filtered['Length'] = pd.to_numeric(filtered['Length'].astype(str).str.extract(r'(\d+)')[0], errors='coerce')
+                    filtered['Length (min)'] = pd.to_numeric(filtered['Length (min)'].astype(str).str.extract(r'(\d+)')[0], errors='coerce')
                     
                    
-                    filtered = filtered.dropna(subset=['Length'])
+                    filtered = filtered.dropna(subset=['Length (min)'])
 
                     
-                    filtered = filtered[filtered['Length'].between(lower_bound, upper_bound)]
+                    filtered = filtered[filtered['Length (min)'].between(lower_bound, upper_bound)]
                 else:
                     print("Error: 'Length' column missing in dataset.")
                     return pd.DataFrame()
