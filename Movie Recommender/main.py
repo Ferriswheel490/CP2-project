@@ -31,16 +31,21 @@ def filter_movies(movies, filters):
             try:
                 user_length = int(value.split()[0])
                 lower_bound, upper_bound = user_length - 10, user_length + 10
-                
+
                 if 'Length' in filtered.columns:
-                    filtered['Length'] = filtered['Length'].astype(str)
-                    filtered['Length'] = filtered['Length'].str.extract('(\d+)')[0].astype(float)
+                    
+                    filtered['Length'] = pd.to_numeric(filtered['Length'].astype(str).str.extract(r'(\d+)')[0], errors='coerce')
+                    
+                   
+                    filtered = filtered.dropna(subset=['Length'])
+
+                    
                     filtered = filtered[filtered['Length'].between(lower_bound, upper_bound)]
                 else:
                     print("Error: 'Length' column missing in dataset.")
                     return pd.DataFrame()
             except ValueError:
-                print("Invalid length format. Please use 'XX min' (e.g., '120 min').")
+                print("Invalid length format. Please use 'XX min'.")
                 return pd.DataFrame()
         else:
             if key in filtered.columns:
@@ -50,6 +55,7 @@ def filter_movies(movies, filters):
                 print(f"Warning: Column '{key}' not found in dataset. Skipping this filter.")
     
     return filtered
+
 
 # Main function
 def main():
@@ -76,7 +82,7 @@ def main():
             if input("Filter by director? (yes/no): ").lower() == "yes":
                 filters['Director'] = input("Enter director: ")
             if input("Filter by length? (yes/no): ").lower() == "yes":
-                filters['Length'] = input("Enter length (e.g., '120 min'): ")
+                filters['Length'] = input("Enter length: ")
             if input("Filter by actor? (yes/no): ").lower() == "yes":
                 filters['Actors'] = input("Enter actor: ")
 
@@ -89,8 +95,7 @@ def main():
             if results.empty:
                 print("No movies found with the selected criteria.")
             else:
-                # Ensure only existing columns are selected
-                columns_to_display = ['Title', 'Genre', 'Director', 'Length', 'Notable Actors']
+                columns_to_display = ['Title', 'Genre', 'Director', 'Length (min)', 'Notable Actors']
                 available_columns = [col for col in columns_to_display if col in results.columns]
 
                 print("\nRecommended Movies:")
