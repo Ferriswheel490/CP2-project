@@ -29,23 +29,25 @@ def filter_movies(movies, filters):
     for key, value in filters.items():
         if key == 'Length (min)':
             try:
-                user_length = int(value.split()[0])
+                user_length = int(value.split()[0])  # Extract number from input
                 lower_bound, upper_bound = user_length - 10, user_length + 10
 
                 if 'Length (min)' in filtered.columns:
-                    
-                    filtered['Length (min)'] = pd.to_numeric(filtered['Length (min)'].astype(str).str.extract(r'(\d+)')[0], errors='coerce')
-                    
-                   
+                    # Convert 'Length (min)' to numeric safely
+                    filtered['Length (min)'] = pd.to_numeric(
+                        filtered['Length (min)'].astype(str).str.extract(r'(\d+)')[0], errors='coerce'
+                    )
+
+                    # Drop rows where length couldn't be converted
                     filtered = filtered.dropna(subset=['Length (min)'])
 
-                    
+                    # Apply range filter
                     filtered = filtered[filtered['Length (min)'].between(lower_bound, upper_bound)]
                 else:
-                    print("Error: 'Length' column missing in dataset.")
+                    print("Error: 'Length (min)' column missing in dataset.")
                     return pd.DataFrame()
             except ValueError:
-                print("Invalid length format. Please use 'XX min'.")
+                print("Invalid length format. Please enter a valid number (e.g., '120 min').")
                 return pd.DataFrame()
         else:
             if key in filtered.columns:
@@ -55,7 +57,6 @@ def filter_movies(movies, filters):
                 print(f"Warning: Column '{key}' not found in dataset. Skipping this filter.")
     
     return filtered
-
 
 # Main function
 def main():
@@ -77,14 +78,16 @@ def main():
             print("\nFilter by at least two criteria:")
             filters = {}
 
-            if input("Filter by genre? (yes/no): ").lower() == "yes":
-                filters['Genre'] = input("Enter genre: ")
-            if input("Filter by director? (yes/no): ").lower() == "yes":
-                filters['Director'] = input("Enter director: ")
-            if input("Filter by length? (yes/no): ").lower() == "yes":
-                filters['Length'] = input("Enter length: ")
-            if input("Filter by actor? (yes/no): ").lower() == "yes":
-                filters['Actors'] = input("Enter actor: ")
+            if input("Filter by genre? (yes/no): ").strip().lower() == "yes":
+                filters['Genre'] = input("Enter genre: ").strip()
+            if input("Filter by director? (yes/no): ").strip().lower() == "yes":
+                filters['Director'] = input("Enter director: ").strip()
+            if input("Filter by length? (yes/no): ").strip().lower() == "yes":
+                filters['Length (min)'] = input("Enter length (e.g., '120 min'): ").strip()
+            if input("Filter by actor? (yes/no): ").strip().lower() == "yes":
+                filters['Actors'] = input("Enter actor: ").strip()
+
+            print("Selected filters:", filters)  # Debugging line
 
             if len(filters) < 2:
                 print("Please select at least two filters.")
