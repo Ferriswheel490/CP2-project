@@ -49,10 +49,25 @@ def load_characters():
         with open(Charater_file, "r") as file:
             reader = csv.DictReader(file)
             for row in reader:
-                characters.append(RPGCharacter(row["name"], int(row["health"]), int(row["strength"]), int(row["defense"]), int(row["speed"]), int(row["experience"]), int(row["level"])))
+                character.append(RPGCharacter(row["name"], int(row["health"]), int(row["strength"]), int(row["defense"]), int(row["speed"]), int(row["experience"]), int(row["level"])))
     except FileNotFoundError:
         pass
-    return characters
+    return character
 
 def create_character():
     pass
+
+def invitory_system():
+    pass
+
+def main():
+    print("hello and welcome to the battle simulator")
+    ans =  int(input("1. create a new character and start a new adventure\n 2. continue an adventure\n 3. exit\n your choice here: "))
+    if ans == "1":
+        pass
+    if ans == "2":
+        pass
+    if ans == "3":
+        pass
+
+main()
