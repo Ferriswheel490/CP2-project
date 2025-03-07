@@ -18,8 +18,9 @@ def view_characters_menu(characters):
         display_character(char)
     main_menu(characters)
 
+# function to battle the characters
 def battle_menu(characters):
-    if len(characters) < 2:
+    if len(characters) < 2: # checks if there is enough character to battle with
         print("Not enough characters to battle.")
         return main_menu(characters)
 
