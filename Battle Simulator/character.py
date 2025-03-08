@@ -1,5 +1,3 @@
-# the code for making the character
-
 import random
 
 class RPGCharacter:

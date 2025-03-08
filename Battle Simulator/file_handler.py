@@ -1,5 +1,3 @@
-# file handling
-
 import csv
 from character import RPGCharacter
 

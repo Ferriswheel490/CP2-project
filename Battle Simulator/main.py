@@ -1,5 +1,3 @@
-# Fairus Battle simulator program
-
 from character import create_character
 from file_handler import save_characters, load_characters
 from battle import battle
@@ -18,9 +16,8 @@ def view_characters_menu(characters):
         display_character(char)
     main_menu(characters)
 
-# function to battle the characters
 def battle_menu(characters):
-    if len(characters) < 2: # checks if there is enough character to battle with
+    if len(characters) < 2:
         print("Not enough characters to battle.")
         return main_menu(characters)
 

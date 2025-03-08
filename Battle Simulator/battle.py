@@ -1,6 +1,3 @@
-# the battle
-
-# function to battle
 def battle(attacker, defender):
     if attacker.health <= 0 or defender.health <= 0:
         winner = attacker if attacker.health > 0 else defender
