@@ -1,4 +1,5 @@
 import random
+from faker import Faker
 
 class RPGCharacter:
     def __init__(self, name, health, strength, defense, speed, experience=0, level=1):
@@ -32,9 +33,4 @@ class RPGCharacter:
             print(f"{self.name} leveled up to Level {self.level}!")
 
 def create_character():
-    name = input("Enter character name: ")
-    health = random.randint(50, 100)
-    strength = random.randint(5, 15)
-    defense = random.randint(5, 15)
-    speed = random.randint(5, 15)
-    return RPGCharacter(name, health, strength, defense, speed)
+   return RPGCharacter()
