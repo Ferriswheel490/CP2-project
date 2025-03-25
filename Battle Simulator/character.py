@@ -33,4 +33,20 @@ class RPGCharacter:
             print(f"{self.name} leveled up to Level {self.level}!")
 
 def create_character():
-   return RPGCharacter()
+    fake = Faker()
+    random_name = fake.name()  # Generates a random name using Faker
+    
+    # You can modify the stats as needed, here I'm using random values for demonstration
+    health = random.randint(50, 100)
+    strength = random.randint(10, 20)
+    defense = random.randint(5, 15)
+    speed = random.randint(5, 15)
+
+    # Create an RPGCharacter instance with the generated name and random stats
+    character = RPGCharacter(random_name, health, strength, defense, speed)
+    
+    print(f"Character created: {character.name}")
+    return character
+
+# Create a character
+new_character = create_character()
