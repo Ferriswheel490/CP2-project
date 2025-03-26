@@ -2,14 +2,18 @@ import random
 from faker import Faker
 
 class RPGCharacter:
-    def __init__(self, name, health, strength, defense, speed, experience=0, level=1):
-        self.name = name
-        self.health = health
-        self.strength = strength
-        self.defense = defense
-        self.speed = speed
+    def __init__(self, name=None, health=None, strength=None, defense=None, speed=None, experience=0, level=1):
+        self.name = name if name else fake.first_name()
+        self.backstory = fake.sentence()
+        self.quote = fake.sentence()
+        self.max_health = health if health else random.randint(50, 100)  # Store max health
+        self.health = self.max_health
+        self.strength = strength if strength else random.randint(5, 15)
+        self.defense = defense if defense else random.randint(5, 15)
+        self.speed = speed if speed else random.randint(5, 15)
         self.experience = experience
         self.level = level
+
 
     def to_dict(self):
         return {
