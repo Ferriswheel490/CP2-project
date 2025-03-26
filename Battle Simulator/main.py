@@ -13,12 +13,18 @@ def create_character_menu(characters):
     main_menu(characters)
 
 def view_characters_menu(characters):
+    if len(characters) < 2:
+        print("You don't have enough characters. Create at least 2 characters first.")
+        while len(characters) < 2:
+            create_character_menu(characters)
     for char in characters:
         display_character(char)
     print("\nCharacter Data Analysis:")
     df = get_character_stats_dataframe(characters)
     print(df.describe())
-    main_menu(characters)
+    main_menu(characters)  # Re-displays the main menu after viewing characters
+
+    
 
 def battle_menu(characters):
     if len(characters) < 2:

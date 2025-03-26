@@ -37,7 +37,14 @@ def battle(player1, player2):
         if tries == 3:
             print(f"{current_player.name} failed to act. Switching turns.")
         turn += 1
+    
     winner = player1 if player1.health > 0 else player2
     print(f"{winner.name} wins the battle!")
     winner.experience += 10
     winner.level_up()
+
+    # **Restore health for both characters after battle**
+    player1.health = player1.max_health
+    player2.health = player2.max_health
+    print(f"{player1.name} and {player2.name} have recovered to full health!")
+
