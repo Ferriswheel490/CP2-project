@@ -26,13 +26,16 @@ def load_coin_denominations():
         with open("Coin Change Problem\coin_denominations.csv", "r") as file:
             reader = csv.reader(file)
             for row in reader:
-                country = row[0].strip()
+                country = row[0].strip()  # Remove whitespace
+                print(f"Loaded country: '{country}'")  # Debugging print
+
                 if country in CURRENCY_VALUES:
-                    coins[country] = CURRENCY_VALUES[country]  # Use the predefined mappings
+                    coins[country] = CURRENCY_VALUES[country]  # Use predefined values
     except FileNotFoundError:
         print("Error: CSV file not found.")
         return None
     return coins
+
 
 # Function to calculate the minimum coins needed for change
 def coin_change(amount, coin_dict):
