@@ -1,4 +1,3 @@
-
 # Function to calculate the minimum coins needed for change
 def coin_change(amount, coin_dict):
     coin_values = sorted(coin_dict.values(), reverse=True)  # Sort values from highest to lowest

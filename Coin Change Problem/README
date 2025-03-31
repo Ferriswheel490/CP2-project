@@ -10,8 +10,11 @@ Not used for this class
 
 ## Execution and usage
 ___
-Paragraph describing how to use the project
-![image](relative path to image NOTE: Image has to be saved in the repository
+so when you start it'll ask you if you want to use this program and you have to choose yes or no
+If you choose yes you can pick a country currency (US, Japan, Germany, India)
+If you choose no then it'll close the program
+it'll perfectly calculate how much coins and bills/notes you need
+![Coin Change Problem\Screenshot 2025-03-28 211239.png](relative path to image NOTE: Image has to be saved in the repository
 REMINDER: Show what the project looks like while running)  
 
 ## Used technologies
