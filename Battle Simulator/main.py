@@ -6,33 +6,40 @@ def display_character(character):
     print(f"\nName: {character.name}\nHealth: {character.health}\nStrength: {character.strength}\nDefense: {character.defense}\nSpeed: {character.speed}\nLevel: {character.level}\nExperience: {character.experience}\n")
     visualize_character(character)
 
+
 def create_character_menu(characters):
     new_char = create_character()
     characters.append(new_char)
-    save_characters(characters)
-    main_menu(characters)
+    save_characters(characters)  # Save after creation
+    print(f"Character {new_char.name} created successfully!\n")
+    main_menu(characters)  # Return to menu
+
 
 def view_characters_menu(characters):
-    if len(characters) < 2:
-        print("You don't have enough characters. Create at least 2 characters first.")
-        while len(characters) < 2:
-            create_character_menu(characters)
+    if not characters:
+        print("No characters have been created yet.")
+        return main_menu(characters)  # Return to the menu instead of breaking
+
     for char in characters:
         display_character(char)
+    
     print("\nCharacter Data Analysis:")
     df = get_character_stats_dataframe(characters)
     print(df.describe())
-    main_menu(characters)  # Re-displays the main menu after viewing characters
+    
+    main_menu(characters)  # Return to menu after displaying characters
 
     
 
 def battle_menu(characters):
     if len(characters) < 2:
-        print("Not enough characters to battle.")
-        return main_menu(characters)
+        print("Not enough characters to battle. Create at least 2 characters first.")
+        return main_menu(characters)  # Return to menu instead of breaking
+
     print("Choose two characters to battle:")
     for i, char in enumerate(characters):
         print(f"{i + 1}. {char.name}")
+
     try:
         c1 = int(input("First character: ")) - 1
         c2 = int(input("Second character: ")) - 1
@@ -42,9 +49,10 @@ def battle_menu(characters):
     except ValueError:
         print("Invalid input.")
         return battle_menu(characters)
+
     battle(characters[c1], characters[c2])
     save_characters(characters)
-    main_menu(characters)
+    main_menu(characters)  # Return to menu after battle
 
 def main_menu(characters):
     print("\n1. Create Character\n2. View Characters\n3. Battle\n4. Exit")
