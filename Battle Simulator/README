@@ -16,12 +16,14 @@ REMINDER: Show what the project looks like while running)
 
 ## Used technologies
 ___
-+ First Library
-`pip install code for library`
-+ Second Library
-`pip install code for library`
-+ Third Library
-`pip install code for library`  
++ csv
+`pip install csv`
++ pandas
+`pip install pandas`
++ fakers
+`pip install fakers`
++ matplotlib
+`pip install matplotlib`
 
 ## Current Features
 ___
