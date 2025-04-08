@@ -1,6 +1,6 @@
+from move_recomender import show
 
-
-def main():
+def personal_portfolio():
     print("hello there and welcome to my person portfolio")
     print("""
         You get to see some of my projects that I made
@@ -8,19 +8,25 @@ def main():
           2. 
           3. 
           4. Child's Drawing
-          5. quit
+          5. 
+          6.
+          7.quit
 """)
     ans =  int(input("\nwhich one do you wanna see:"))
     if ans == 1:
+        show()
+    elif ans == 2:
         pass
-    elif ans == 1:
+    if ans == 3:
         pass
-    if ans == 1:
-        pass
-    if ans == 1:
+    if ans == 4:
         pass
     if ans == 5:
+        pass
+    if ans == 6:
+        pass
+    if ans == 7:
         quit("bye bye")
     else:
         print()
-main()
+personal_portfolio()
