@@ -2,7 +2,7 @@
 
 ## Project Description
 ___
-This project is the coin change problem and it will make it s
+This project my personal portfolio and it will let you see and use the things i made
 
 ## Installation
 ___
@@ -17,7 +17,7 @@ REMINDER: Show what the project looks like while running)
 ## Used technologies
 ___
 + First Library
-`pip install code for library`
+`pip install pandas
 + Second Library
 `pip install code for library`
 + Third Library
@@ -25,10 +25,7 @@ ___
 
 ## Current Features
 ___
-+ First feature I am proud of
-+ Second feature I am proud of
-+ Third feature I am proud of  
-
++ making the main menu working
 ## Contributions
 ___
 Not used for this class  
@@ -36,11 +33,12 @@ Not used for this class
 ## Contributers
 ___
 + Fairus De La Cruz - Made the code
++ chatgpt - used it to format things better
 
 ## Author's Information
 ____
-Short paragraph about you (each memeber of the group)
-Potentially has contact information  
+Fairus De La Cruz
+I am an intermediate programmer interested in learning more. I also want to be a game developer, and I am making a game called Child's Drawing, which is somewhat of a horror game.
 
 ## Change log
 ___
