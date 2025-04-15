@@ -126,6 +126,3 @@ def run_program():
         except ValueError:
             # If the user doesn't enter a valid number, print an error message
             print("Please enter a valid number (1-5).\n")
-
-# Start the program by calling the run_program function
-run_program()

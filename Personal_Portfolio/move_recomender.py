@@ -75,13 +75,13 @@ def movie_recommender():
             filters = {}  # Initialize an empty dictionary to hold the filters
 
             # Ask the user for various filters (genre, director, length, actor)
-            if input("Filter by genre? (y/n): ").lower() == "y":
+            if input("Filter by genre? (y/n): ").lower() == "y" or "yes":
                 filters['Genre'] = input("Genre: ")
-            if input("Filter by director? (y/n): ").lower() == "y":
+            if input("Filter by director? (y/n): ").lower() == "y" or "yes":
                 filters['Director'] = input("Director: ")
-            if input("Filter by length? (y/n): ").lower() == "y":
+            if input("Filter by length? (y/n): ").lower() == "y" or "yes":
                 filters['Length (min)'] = input("Length (e.g., '120 min'): ")
-            if input("Filter by actor? (y/n): ").lower() == "y":
+            if input("Filter by actor? (y/n): ").lower() == "y" or "yes":
                 filters['Actors'] = input("Actor: ")
 
             if len(filters) < 2:  # Ensure at least two filters are selected
