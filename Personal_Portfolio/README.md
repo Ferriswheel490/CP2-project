@@ -35,7 +35,7 @@ ___
 ## Author's Information
 ____
 **Fairus De La Cruz**
-+ I am an intermediate programmer interested in learning more. I also want to be a game developer, and I am making a game called Child's Drawing, which is somewhat of a horror game.
++ I am an intermediate programmer interested in learning more. I also want to be a game developer, and I am making some games at the moment.
 email: fairus.delacruz@ucas-ede.net
 ## Change log
 ___
