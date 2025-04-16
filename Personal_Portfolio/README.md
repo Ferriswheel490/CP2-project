@@ -2,7 +2,8 @@
 
 ## Project Description
 ___
-This project my personal portfolio and it will let you see and use the things i made
+This project my personal portfolio and it will let you see and use the things I made
+there are 6 things that i made
 
 ## Installation
 ___
@@ -16,12 +17,8 @@ REMINDER: Show what the project looks like while running)
 
 ## Used technologies
 ___
-+ First Library
++ Pandas
 `pip install pandas
-+ Second Library
-`pip install code for library`
-+ Third Library
-`pip install code for library`  
 
 ## Current Features
 ___
@@ -38,7 +35,7 @@ ___
 ## Author's Information
 ____
 Fairus De La Cruz
-I am an intermediate programmer interested in learning more. I also want to be a game developer, and I am making a game called Child's Drawing, which is somewhat of a horror game.
++I am an intermediate programmer interested in learning more. I also want to be a game developer, and I am making a game called Child's Drawing, which is somewhat of a horror game.
 
 ## Change log
 ___

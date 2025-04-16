@@ -4,7 +4,9 @@ def chat():
     print("""
 This is a short AI chatbot.
 There's a bit to do, and I made this on short notice.
-""")
+the only things you can say here are hello, how are you, and bye
+anything else will be unabled to understand
+""")    
     ans = input("Do you want to use it? (y/n): ").lower()  # Make input case insensitive
     if ans == "yes" or ans == "y":
         ai_chat()
