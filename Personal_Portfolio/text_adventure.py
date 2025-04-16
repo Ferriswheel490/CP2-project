@@ -5,6 +5,8 @@ def game():
 This is a quick text adventure game that I made.
 You need to escape the forest in order to survive.
 Be careful — your actions have consequences.
+I knew about text adventure games and wanted to make one
+I learned that this was pretty easy and will do again
 """)
     # Ask the user if they want to play and store their response in 'play'
     play = input("Do you wanna play? (y/n): ").lower()

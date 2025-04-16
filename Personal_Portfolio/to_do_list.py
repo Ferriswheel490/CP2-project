@@ -12,6 +12,8 @@ This is a simple task manager where you can:
 - View your tasks
 - Add new ones
 - Remove completed tasks
+This was another things I learned in class
+I learned how to list things and remove things on a list
     """)
     ans = input("Do you want to use it? (y/n): ").strip().lower()
     if ans in ("yes", "y"):

@@ -13,6 +13,8 @@ This tool helps you with:
 - Compound interest calculation
 - Budget allocation
 - Sale price discounts
+this was one of my fist things to make in class
+I learned many more things in python when doing this
     """)
 
     # Ask if the user wants to use the financial toolkit

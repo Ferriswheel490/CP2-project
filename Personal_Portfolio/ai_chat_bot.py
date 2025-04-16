@@ -6,6 +6,8 @@ This is a short AI chatbot.
 There's a bit to do, and I made this on short notice.
 the only things you can say here are hello, how are you, and bye
 anything else will be unabled to understand
+I wanted to so something else but I had to finish it quick8
+I learned to make something quick and hope that it works
 """)    
     ans = input("Do you want to use it? (y/n): ").lower()  # Make input case insensitive
     if ans == "yes" or ans == "y":

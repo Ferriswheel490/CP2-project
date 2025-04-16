@@ -7,6 +7,8 @@ def show():
 hello there, you have clicked on the movie recommender!
 This program will let you pick genre, actors, and more.
 You can get suggestions or browse the whole movie list.
+I learn this in clas and made it
+I learned how bad bugs can get and how to put a list in a csv and use that csv
 """)
     ans = input("\nDo you want to see it in action? (y/n): ")
     if ans.lower() in ["yes", "y"]:  # If the user wants to proceed, call movie_recommender()

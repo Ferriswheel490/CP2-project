@@ -9,6 +9,8 @@ here you can
 - put the artist of said song
 - put in the genre
 - and release year
+I learned this in class
+I learned how to sace things when the user puts stuff in
 """)
     # Ask the user if they want to use the program and store their answer in 'ans'
     ans = input("do you wanna use it (y/n): ")
