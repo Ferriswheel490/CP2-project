@@ -35,4 +35,8 @@ the list of pets:
         - Mouse
 
 """)
-    input("which one do you want: ")
+    pet = input("which one do you want: ")
+    if pet == pet:
+        pass
+    if pet == "Hamster":
+        pass
