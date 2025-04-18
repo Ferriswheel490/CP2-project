@@ -1,5 +1,5 @@
 from create_pet import create_pet
-
+from hamster import hamster
 
 def main():
     print("""
@@ -12,4 +12,7 @@ Take care of your pet and watch it grow up
         create_pet()
     if ans == "no" or "n":
         print("ok bye")
+    else:
+        print("bye then")
+
 main()

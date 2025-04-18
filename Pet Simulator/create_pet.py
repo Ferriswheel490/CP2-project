@@ -1,5 +1,5 @@
 from hamster import hamster
-
+from take_care_of_pet import *
 
 
 def create_pet():
@@ -16,27 +16,20 @@ the list of pets:
 
         - Goldfish
 
-        - Turtle
-
-        - Guinea Pig
-
-        - Snake
-
-        - Ferret
-
-        - Lizard
-
         - Bird
 
         - Frog
 
-        - Rabbit
-
-        - Mouse
 
 """)
     pet = input("which one do you want: ")
-    if pet == pet:
-        pass
-    if pet == "Hamster":
+    if pet == "Dog" or "Cat" or "Rabbit" or "Goldfish" or "Bird" or "Frog":
+        name_pet()
+    elif pet == "Hamster":
         hamster()
+    else:
+        print("that is not a pet in our list please pick one of them")
+        create_pet()
+
+def name_pet(pet):
+    name = input("what you wanna name your" + pet)
