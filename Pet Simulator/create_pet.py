@@ -1,4 +1,4 @@
-
+from hamster import hamster
 
 
 
@@ -39,4 +39,4 @@ the list of pets:
     if pet == pet:
         pass
     if pet == "Hamster":
-        pass
+        hamster()

@@ -1,4 +1,11 @@
 import random
 
 def hamster():
-    pass
+    print("""
+hampter
+""")
+    
+    if random.randint(1, 1_000_000) == 1:
+        print("""
+creepy hampter
+""")
