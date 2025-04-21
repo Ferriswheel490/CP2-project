@@ -1,5 +1,5 @@
 from hamster import hamster
-from take_care_of_pet import *
+from take_care_of_pet import stuff
 
 
 def create_pet():
@@ -33,3 +33,4 @@ the list of pets:
 
 def name_pet(pet):
     name = input("what you wanna name your" + pet)
+    stuff()
