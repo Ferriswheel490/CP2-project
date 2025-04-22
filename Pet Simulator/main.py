@@ -10,11 +10,11 @@ def main():
 𝖈𝖆𝖗𝖊 𝖔𝖋 𝖞𝖔𝖚𝖗 𝖕𝖊𝖙 𝖆𝖓𝖉 𝖜𝖆𝖙𝖈𝖍 𝖎𝖙 𝖌𝖗𝖔𝖜 𝖚𝖕
 """)
     ans = input("do you wanna create a pet (y/n): ")
-    if ans == "yes" or "y":
+    if ans.lower() in ["yes", "y"]:
         create_pet()
-    if ans == "no" or "n":
+    elif ans.lower() in ["no", "n"]:
         print("ok bye")
-        exit
+        exit()
     else:
         print("bye then")
 

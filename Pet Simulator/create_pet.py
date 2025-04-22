@@ -23,14 +23,16 @@ the list of pets:
 
 """)
     pet = input("which one do you want: ")
-    if pet == "Dog" or "Cat" or "Rabbit" or "Goldfish" or "Bird" or "Frog":
-        name_pet()
+    if pet in ["Dog", "Cat", "Rabbit", "Goldfish", "Bird", "Frog"]:
+        name_pet(pet)
     elif pet == "Hamster":
         hamster()
     else:
-        print("that is not a pet in our list please pick one of them")
+        print("That is not a pet in our list. Please pick one of them.")
         create_pet()
 
+
 def name_pet(pet):
-    name = input("what you wanna name your" + pet)
+    name = input("What do you want to name your " + pet + "? ")
     stuff()
+
