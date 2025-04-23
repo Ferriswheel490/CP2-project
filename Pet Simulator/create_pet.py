@@ -1,38 +1,27 @@
-from hamster import hamster
-from take_care_of_pet import stuff
-
+import csv
+from datetime import datetime
+from take_care_of_pet import CSV_FILE
 
 def create_pet():
-    print("great you wanna make a pet but first what kinda of pet do you want")
-    print("""
-the list of pets:
-        - Dog
+    pet_type = input("What kind of pet do you want? (Dog, Cat, Rabbit, Hamster, Goldfish, Bird, Frog): ")
+    name = input(f"What would you like to name your {pet_type}? ")
 
-        - Cat
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    pet = {
+        "name": name,
+        "type": pet_type,
+        "hunger": "100",
+        "happiness": "100",
+        "energy": "100",
+        "last_updated": now,
+        "birth_date": now,
+        "days_passed": "0"
+    }
 
-        - Rabbit
+    with open(CSV_FILE, 'w', newline='') as file:
+        fieldnames = pet.keys()
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerow(pet)
 
-        - Hamster
-
-        - Goldfish
-
-        - Bird
-
-        - Frog
-
-
-""")
-    pet = input("which one do you want: ")
-    if pet in ["Dog", "Cat", "Rabbit", "Goldfish", "Bird", "Frog"]:
-        name_pet(pet)
-    elif pet == "Hamster":
-        hamster()
-    else:
-        print("That is not a pet in our list. Please pick one of them.")
-        create_pet()
-
-
-def name_pet(pet):
-    name = input("What do you want to name your " + pet + "? ")
-    stuff()
-
+    print(f"{name} the {pet_type} has been created!")
