@@ -2,21 +2,29 @@ from create_pet import create_pet
 from take_care_of_pet import stuff
 import os
 
-def main():
-    if not os.path.exists("pet_data.csv"):
-        print("No existing pet found.")
-        choice = input("Do you want to create a new pet? (y/n): ").lower()
-        if choice in ("y", "yes"):
-            create_pet()
-        else:
-            print("Come back when you're ready for a pet!")
-            return
-    else:
-        choice = input("Do you already have a pet or want to create a new one? (have/new): ").lower()
-        if choice == "new":
-            create_pet()
+CSV_FILE = "pet_data.csv"
 
-    stuff()
+def main():
+    print("""
+Welcome to the Pet Simulator!
+You can create a new pet or take care of your existing one.
+""")
+    if os.path.exists(CSV_FILE):
+        print(f"Found existing pet data in {CSV_FILE}.")
+        choice = input("Do you already have a pet? (y/n): ").strip().lower()
+        if choice in ['y', 'yes']:
+            print("Taking care of your existing pet...")
+            stuff()
+        elif choice in ['n', 'no']:
+            print("Creating a new pet...")
+            create_pet()
+            stuff()
+        else:
+            print("Invalid input. Please enter 'y' or 'n'.")
+    else:
+        print("No pet found. Let's create one!")
+        create_pet()
+        stuff()
 
 if __name__ == "__main__":
     main()
