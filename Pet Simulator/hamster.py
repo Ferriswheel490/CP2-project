@@ -77,7 +77,11 @@ def care_loop():
     show_hamster_intro()
     hamster_name = name_hamster()
 
-    while not hamster_status["dead"]:
+    while True:
+        if hamster_status["dead"]:
+            print("\n💀 Your hamster has died. Game over.")
+            break
+
         print(f"\nWhat would you like to do with {hamster_name}?")
         print("1. Feed")
         print("2. Play")
@@ -108,8 +112,11 @@ def care_loop():
         else:
             print("Invalid choice.")
 
-        time.sleep(1)
+        # Update hamster stats and check if dead after each action
         update_stats()
+
+        time.sleep(1)
+
 
 def update_stats():
     hamster_status["age"] += 1

@@ -5,9 +5,19 @@ import random
 CSV_FILE = "Pet Simulator\pet_data.csv"
 
 def load_pet():
-    with open(CSV_FILE, newline='') as file:
-        reader = csv.DictReader(file)
-        return next(reader)
+    try:
+        with open(CSV_FILE, newline='') as file:
+            reader = csv.DictReader(file)
+            # Check if the file is empty
+            pet = next(reader, None)
+            if pet is None:
+                print("No pet data found in the file. Starting a new pet.")
+                return None
+            return pet
+    except FileNotFoundError:
+        print("Pet data file not found. Creating a new pet.")
+        return None
+
 
 def save_pet(pet):
     with open(CSV_FILE, 'w', newline='') as file:
@@ -63,6 +73,20 @@ def get_milestone(age):
 
 def stuff():
     pet = load_pet()
+
+    # If no pet data was loaded, start fresh
+    if pet is None:
+        pet = {
+            'name': input("What is your pet's name? "),
+            'type': input("What type of pet is it? "),
+            'hunger': 100,
+            'happiness': 100,
+            'energy': 100,
+            'last_updated': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            'birth_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+        print(f"Creating a new pet: {pet['name']} the {pet['type']}.")
+
     pet = apply_stat_decay(pet)
     pet = random_event(pet)
 
@@ -112,3 +136,6 @@ Choose: """)
             print("Invalid choice.")
 
         save_pet(pet)
+        if int(pet['hunger']) <= 0 or int(pet['happiness']) <= 0 or int(pet['energy']) <= 0:
+            print(f"💀 {pet['name']} has passed away. Game over.")
+            break
