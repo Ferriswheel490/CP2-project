@@ -3,7 +3,7 @@ from take_care_of_pet import stuff
 from hamster import care_loop as hamster_care
 
 def save_pet(pet_type):
-    with open("pet.csv", "w", newline="") as f:
+    with open("Pet Simulator\pet_data.csv", "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow([pet_type, "100", "100", "100", "alive", "0"])  # Type, hunger, happiness, health, status, age
 
